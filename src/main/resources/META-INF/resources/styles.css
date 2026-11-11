@@ -1,0 +1,90 @@
+:root {
+  --cf-primary: #2563EB;
+  --cf-footer-bg: #F3F4F6;
+}
+
+/* ---------- kartu & halaman auth ---------- */
+.cf-auth-page { background: linear-gradient(135deg, #EFF6FF, #F8FAFC); }
+.cf-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, .08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+.cf-card-title { margin: 0 0 8px; font-size: 1.4rem; color: #111827; }
+
+/* ---------- navbar / drawer ---------- */
+.cf-brand { font-size: 1.3rem; margin: 16px; color: var(--cf-primary); }
+.cf-greeting { font-weight: 500; }
+
+/* ---------- ringkasan ---------- */
+.cf-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+.cf-stat { background: #fff; border-radius: 10px; padding: 14px 16px; border-left: 4px solid var(--cf-primary);
+           box-shadow: 0 1px 4px rgba(15, 23, 42, .08); display: flex; flex-direction: column; }
+.cf-stat.cf-income { border-left-color: #16A34A; }
+.cf-stat.cf-expense { border-left-color: #DC2626; }
+.cf-stat.cf-balance { border-left-color: #7C3AED; }
+.cf-stat-label { font-size: .8rem; color: #6B7280; }
+.cf-stat-value { font-size: 1.15rem; font-weight: 700; }
+
+/* ---------- toolbar & grid ---------- */
+.cf-toolbar { flex-wrap: wrap; gap: 12px; align-items: flex-end; width: 100%; }
+.cf-thumb { height: 40px; width: 40px; object-fit: cover; border-radius: 6px; cursor: zoom-in; }
+
+/* ---------- cursor ---------- */
+vaadin-button,
+vaadin-menu-bar-button,
+vaadin-menu-bar-item,
+vaadin-context-menu-item,
+vaadin-drawer-toggle,
+vaadin-tab,
+vaadin-tabs::part(tab),
+vaadin-side-nav-item,
+vaadin-side-nav-item::part(link),
+vaadin-grid-sorter,
+vaadin-select::part(toggle-button),
+vaadin-upload-file::part(remove-button),
+a, [role="button"] {
+  cursor: pointer;
+}
+vaadin-button[disabled],
+vaadin-menu-bar-button[disabled],
+vaadin-context-menu-item[disabled] {
+  cursor: not-allowed;
+}
+
+/* ---------- indikator loading global ---------- */
+.v-loading-indicator {
+  position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 2147483647;
+  background: var(--cf-primary); pointer-events: none;
+  animation: cf-loading 1.2s ease-in-out infinite;
+}
+.v-loading-indicator.second { background: #F59E0B; }
+.v-loading-indicator.third { background: #DC2626; }
+@keyframes cf-loading { 0% { opacity: .4; } 50% { opacity: 1; } 100% { opacity: .4; } }
+
+/* ---------- dialog modal: header biru, footer abu-abu, tombol rata kanan ---------- */
+vaadin-dialog-overlay.cf-dialog::part(header) {
+  background-color: #2563EB;
+  color: #fff;
+}
+vaadin-dialog-overlay.cf-dialog::part(title) { color: #fff; }
+vaadin-dialog-overlay.cf-dialog::part(footer) {
+  background-color: #F3F4F6;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ---------- preview bukti ---------- */
+.cf-preview-box { overflow: auto; max-height: 70vh; text-align: center; }
+.cf-preview-image { max-width: 100%; transition: transform .15s ease; transform-origin: center top; }

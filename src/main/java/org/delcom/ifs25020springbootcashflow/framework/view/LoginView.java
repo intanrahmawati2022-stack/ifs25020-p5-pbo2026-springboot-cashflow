@@ -27,7 +27,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private final TextField username = new TextField("Username");
     private final PasswordField password = new PasswordField("Password");
-    private final PageCard card = new PageCard("Masuk ke Cashflow");
+    private final PageCard card = new PageCard("Masuk ke Cashflow", true);
 
     public LoginView(AuthUseCase auth, IUserRepository users) {
         this.auth = auth;
@@ -36,6 +36,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(FlexComponent.Alignment.CENTER);
         setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         addClassName("cf-auth-page");
+        getElement().setAttribute("role", "main");
 
         username.setId("login-username");
         username.setWidthFull();

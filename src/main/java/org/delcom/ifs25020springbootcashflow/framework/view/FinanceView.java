@@ -13,6 +13,7 @@ import org.delcom.ifs25020springbootcashflow.usecase.FinanceUseCase;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -43,11 +44,15 @@ public class FinanceView extends VerticalLayout {
         this.users = users;
         setSizeFull();
         setPadding(true);
+        getElement().setAttribute("role", "main");
+        H1 heading = new H1("Catatan Keuangan");
+        heading.addClassName("cf-page-title");
 
         summary = new SummaryCards(presenter);
         grid = new TransactionGrid(presenter, this::confirmDelete);
 
         search.setPlaceholder("Cari keterangan...");
+        search.getElement().setAttribute("accessible-name", "Cari keterangan");
         search.setPrefixComponent(VaadinIcon.SEARCH.create());
         search.setClearButtonVisible(true);
         search.setValueChangeMode(ValueChangeMode.LAZY);
@@ -67,7 +72,7 @@ public class FinanceView extends VerticalLayout {
 
         FlexLayout toolbar = new FlexLayout(search, sort, reload, income, expense);
         toolbar.addClassName("cf-toolbar");
-        add(summary, toolbar, grid);
+        add(heading, summary, toolbar, grid);
         expand(grid);
     }
 

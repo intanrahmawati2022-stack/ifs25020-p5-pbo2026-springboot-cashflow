@@ -28,7 +28,7 @@ public class RegisterView extends VerticalLayout implements BeforeEnterObserver 
     private final TextField username = new TextField("Username");
     private final PasswordField password = new PasswordField("Password");
     private final PasswordField confirm = new PasswordField("Ulangi password");
-    private final PageCard card = new PageCard("Daftar akun Cashflow");
+    private final PageCard card = new PageCard("Daftar akun Cashflow", true);
 
     public RegisterView(AuthUseCase auth, IUserRepository users) {
         this.auth = auth;
@@ -37,6 +37,7 @@ public class RegisterView extends VerticalLayout implements BeforeEnterObserver 
         setAlignItems(FlexComponent.Alignment.CENTER);
         setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         addClassName("cf-auth-page");
+        getElement().setAttribute("role", "main");
 
         fullName.setWidthFull();
         username.setWidthFull();

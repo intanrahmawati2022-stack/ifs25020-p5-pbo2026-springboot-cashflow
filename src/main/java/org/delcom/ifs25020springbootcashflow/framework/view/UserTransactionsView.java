@@ -5,6 +5,7 @@ import org.delcom.ifs25020springbootcashflow.domain.entity.SortOption;
 import org.delcom.ifs25020springbootcashflow.domain.entity.User;
 import org.delcom.ifs25020springbootcashflow.usecase.FinanceUseCase;
 import org.delcom.ifs25020springbootcashflow.usecase.UserUseCase;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -34,6 +35,9 @@ public class UserTransactionsView extends VerticalLayout implements AdminView, H
         this.userUseCase = userUseCase;
         setSizeFull();
         setPadding(true);
+        getElement().setAttribute("role", "main");
+        H1 heading = new H1("Transaksi Pengguna");
+        heading.addClassName("cf-page-title");
 
         summary = new SummaryCards(presenter);
         grid = new TransactionGrid(presenter, null); // read-only
@@ -44,6 +48,7 @@ public class UserTransactionsView extends VerticalLayout implements AdminView, H
         userSelect.addValueChangeListener(e -> refresh());
 
         search.setPlaceholder("Cari keterangan...");
+        search.getElement().setAttribute("accessible-name", "Cari keterangan");
         search.setClearButtonVisible(true);
         search.setValueChangeMode(ValueChangeMode.LAZY);
         search.addValueChangeListener(e -> refresh());
@@ -56,7 +61,7 @@ public class UserTransactionsView extends VerticalLayout implements AdminView, H
 
         FlexLayout toolbar = new FlexLayout(userSelect, search, sort);
         toolbar.addClassName("cf-toolbar");
-        add(toolbar, summary, grid);
+        add(heading, toolbar, summary, grid);
         expand(grid);
     }
 

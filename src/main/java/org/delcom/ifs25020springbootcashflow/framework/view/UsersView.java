@@ -7,6 +7,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -23,6 +24,9 @@ public class UsersView extends VerticalLayout implements AdminView {
         this.userUseCase = userUseCase;
         setSizeFull();
         setPadding(true);
+        getElement().setAttribute("role", "main");
+        H1 heading = new H1("Daftar Pengguna");
+        heading.addClassName("cf-page-title");
         GridStyles.apply(grid);
         grid.addColumn(User::getId).setHeader("ID").setSortable(true).setFlexGrow(0).setAutoWidth(true);
         grid.addColumn(User::getUsername).setHeader("Username").setSortable(true);
@@ -34,7 +38,7 @@ public class UsersView extends VerticalLayout implements AdminView {
             b.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
             return b;
         }).setHeader("Aksi").setAutoWidth(true).setFlexGrow(0);
-        add(grid);
+        add(heading, grid);
         expand(grid);
     }
 

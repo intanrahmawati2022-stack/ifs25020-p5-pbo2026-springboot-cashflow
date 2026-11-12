@@ -36,9 +36,11 @@ public class TransactionGrid extends Grid<Transaction> {
             if (t.getProofPath() == null) return new Span("-");
             Image img = new Image(FileStorage.urlOf(t.getProofPath()), "Bukti transaksi " + t.getId());
             img.addClassName("cf-thumb");
-            img.addClickListener(e -> ImagePreviewDialog.show(FileStorage.urlOf(t.getProofPath()),
+            Button open = new Button(img, e -> ImagePreviewDialog.show(FileStorage.urlOf(t.getProofPath()),
                     "Bukti transaksi [" + t.getId() + "]"));
-            return img;
+            open.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+            open.setAriaLabel("Perbesar bukti transaksi " + t.getId());
+            return open;
         }).setHeader("Bukti").setAutoWidth(true);
         addColumn(t -> presenter.formatDate(t.getCreatedAt())).setHeader("Waktu")
                 .setComparator(Comparator.comparing(Transaction::getCreatedAt)).setAutoWidth(true);

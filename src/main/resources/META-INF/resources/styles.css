@@ -18,7 +18,11 @@
 .cf-card-title { margin: 0 0 8px; font-size: 1.4rem; color: #111827; }
 
 /* ---------- navbar / drawer ---------- */
-.cf-brand { font-size: 1.3rem; margin: 16px; color: var(--cf-primary); }
+.cf-header { display: flex; align-items: center; flex: 1; min-width: 0; }
+.cf-header > .cf-navbar { flex: 1; }
+.cf-brand { display: block; font-size: 1.3rem; font-weight: 700; margin: 16px; color: var(--cf-primary); }
+.cf-page-title { font-size: 1.5rem; margin: 0 0 4px; color: #111827; }
+.cf-card a { text-decoration: underline; }
 .cf-greeting { font-weight: 500; }
 
 /* ---------- ringkasan ---------- */
@@ -38,7 +42,7 @@
 
 /* ---------- toolbar & grid ---------- */
 .cf-toolbar { flex-wrap: wrap; gap: 12px; align-items: flex-end; width: 100%; }
-.cf-thumb { height: 40px; width: 40px; object-fit: cover; border-radius: 6px; cursor: zoom-in; }
+.cf-thumb { height: 40px; width: 40px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
 
 /* ---------- cursor ---------- */
 vaadin-button,

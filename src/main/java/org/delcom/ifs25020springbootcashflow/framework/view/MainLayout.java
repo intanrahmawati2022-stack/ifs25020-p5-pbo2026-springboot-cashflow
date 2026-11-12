@@ -8,8 +8,9 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
+import com.vaadin.flow.component.html.Aside;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
@@ -25,7 +26,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 public class MainLayout extends AppLayout implements BeforeEnterObserver {
     private final IUserRepository users;
     private final HorizontalLayout navbar = new HorizontalLayout();
-    private final Div drawerBox = new Div();
+    private final Aside drawerBox = new Aside();
 
     public MainLayout(IUserRepository users) {
         this.users = users;
@@ -34,9 +35,14 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         navbar.setWidthFull();
         navbar.setAlignItems(FlexComponent.Alignment.CENTER);
         navbar.addClassName("cf-navbar");
-        addToNavbar(new DrawerToggle(), navbar);
+        DrawerToggle toggle = new DrawerToggle();
+        toggle.getElement().setAttribute("aria-label", "Buka atau tutup menu");
+        Header header = new Header(toggle, navbar);
+        header.addClassName("cf-header");
+        addToNavbar(header);
 
         drawerBox.addClassName("cf-drawer");
+        drawerBox.getElement().setAttribute("aria-label", "Navigasi aplikasi");
         addToDrawer(drawerBox);
     }
 
@@ -58,7 +64,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         navbar.removeAll();
         drawerBox.removeAll();
 
-        H1 title = new H1("Cashflow");
+        Span title = new Span("Cashflow");
         title.addClassName("cf-brand");
         drawerBox.add(title);
 
@@ -82,6 +88,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         MenuBar menu = new MenuBar();
         menu.addThemeVariants(MenuBarVariant.LUMO_TERTIARY_INLINE);
         var root = menu.addItem(avatar);
+        root.getElement().setAttribute("aria-label", "Menu pengguna " + user.getFullName());
         root.getSubMenu().addItem("Profil", e -> UI.getCurrent().navigate(ProfileView.class));
         root.getSubMenu().addItem("Keluar", e -> {
             AuthSession.logout();

@@ -32,13 +32,14 @@ public class ProfileView extends VerticalLayout {
     private final TextField fullName = new TextField("Nama lengkap");
     private final PasswordField password = new PasswordField("Password baru (kosongkan bila tidak diubah)");
     private final ImageUpload photo = new ImageUpload("Pilih foto profil");
-    private final PageCard card = new PageCard("Profil");
+    private final PageCard card = new PageCard("Profil", true);
 
     public ProfileView(UserUseCase userUseCase, IUserRepository users, FileStorage storage) {
         this.userUseCase = userUseCase;
         this.users = users;
         this.storage = storage;
         setPadding(true);
+        getElement().setAttribute("role", "main");
 
         avatar.setHeight("96px");
         avatar.setWidth("96px");

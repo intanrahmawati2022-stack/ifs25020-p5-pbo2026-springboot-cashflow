@@ -100,6 +100,7 @@
                     <excludes>
                         <exclude>**/framework/view/**</exclude>
                         <exclude>**/framework/auth/**</exclude>
+                        <exclude>**/App.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
